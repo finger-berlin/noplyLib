@@ -43,6 +43,21 @@ Have a look at "Noply\DB" and "Noply\DB\sTunnel".
     // update...
     $success = $std_dbh->update('tablename SET row2 = ? WHERE row1 = ?', $array(2, 1));
 
+## include in your own ... whatever
+
+### clone noplyLib
+
+    $ git submodule add git@github.com:finger-berlin/noplyLib.git lib/noplyLib
+
+### include into your code...
+
+    require('lib/noplyLib/Noply/smallInit.php');
+    $noply = new Noply\smallInit();
+
+You can call your script from any location (directory) and it will work.
+
+    $ php /path_to_my_php_files/php-script.php
+
 ## usage
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
