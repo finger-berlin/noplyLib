@@ -38,4 +38,4 @@ $array = $std_dbh->select('SELECT * FROM tablename WHERE row3 = ?', 3);
 $array = $std_dbh->select('* FROM tablename WHERE row3 = ?', 3);
 
 // update...
-$success = $std_dbh->update('tablename SET row2 = ? WHERE row1 = ?', $array(2, 1));
+$success = $std_dbh->update('tablename SET row2 = ? WHERE row1 = ?', array(2, 1));
