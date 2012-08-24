@@ -7,6 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 namespace Noply;
+
 class smallInit
 {
     private function __autoload($className)
