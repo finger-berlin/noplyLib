@@ -153,7 +153,7 @@ class DB
      * @param $statement
      * @param $args
      *
-     * @return mixed
+     * @return array
      */
     private function _change($statement, $args)
     {
@@ -196,7 +196,7 @@ class DB
             $statement = 'INSERT ' . $statement;
         }
 
-        return $this->_change($statement, $args);
+        return array($this->_change($statement, $args), $this->dbh->lastInsertId());
     }
 
     /**
