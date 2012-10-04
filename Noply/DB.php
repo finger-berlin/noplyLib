@@ -117,10 +117,23 @@ class DB
 
         $sth = $this->dbh->prepare($statement);
         $sth->setFetchMode(\PDO::FETCH_ASSOC);
-        $sth->execute($args);
-        $result = $sth->fetchAll();
 
-        return $result;
+        $sth->execute($args);
+
+        return $sth->fetchAll();
+    }
+
+    /**
+     * @param string $tablename
+     *
+     * @return int
+     */
+    public function count($tablename = '')
+    {
+        $sth = $this->dbh->prepare('SELECT COUNT(*) FROM ' . $tablename);
+        $sth->execute();
+
+        return (int)$sth->fetchColumn();
     }
 
     /**
@@ -144,9 +157,7 @@ class DB
         $sth = $this->dbh->prepare($statement);
         $sth->execute($args);
 
-        $result = $sth->rowCount();
-
-        return $result;
+        return $sth->rowCount();
     }
 
     /**
@@ -179,9 +190,7 @@ class DB
         $sth->setFetchMode(\PDO::FETCH_ASSOC);
         $sth->execute($args);
 
-        $result = $sth->fetchAll();
-
-        return $result;
+        return $sth->fetchAll();
     }
 
     /**
@@ -196,7 +205,10 @@ class DB
             $statement = 'INSERT ' . $statement;
         }
 
-        return array($this->_change($statement, $args), $this->dbh->lastInsertId());
+        return array(
+            $this->_change($statement, $args),
+            $this->dbh->lastInsertId()
+        );
     }
 
     /**
