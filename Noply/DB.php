@@ -200,6 +200,27 @@ class DB
     }
 
     /**
+     * @param string $tableName
+     * @param array  $namedArray
+     *
+     * @return array
+     */
+    public function insertArray($tableName = '', $namedArray = array())
+    {
+        if (!is_array($namedArray) || !count($namedArray)) return array(false, false);
+
+        $bindNames = ':' . implode(',:', array_keys($namedArray));
+
+        $statement = 'INSERT INTO ' . $tableName . '(' . implode(',', array_keys($namedArray)) . ') ' .
+            'VALUES (' . $bindNames . ')';
+
+        return array(
+            $this->_change($statement, array_combine(explode(',', $bindNames), array_values($namedArray))),
+            $this->dbh->lastInsertId()
+        );
+    }
+
+    /**
      * @param string $statement
      * @param null   $args
      *
